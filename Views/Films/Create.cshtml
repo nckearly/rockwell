@@ -1,0 +1,58 @@
+﻿@model Rockwell.Models.Film
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Film</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MovieTitle" class="control-label">Title</label>
+                <input asp-for="MovieTitle" class="form-control" />
+                <span asp-validation-for="MovieTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PitchText" class="control-label">Pitch Text</label>
+                <input asp-for="PitchText" class="form-control" />
+                <span asp-validation-for="PitchText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountBudgeted" class="control-label">Budget</label>
+                <input asp-for="AmountBudgeted" class="form-control" />
+                <span asp-validation-for="AmountBudgeted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatingFk" class="control-label">Genre</label>
+                <select asp-for="RatingFk" class="form-control" asp-items="ViewBag.RatingFk"></select>
+                <span asp-validation-for="RatingFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label">Summary</label>
+                <input asp-for="Summary" class="form-control" />
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateInTheaters" class="control-label">Release Date</label>
+                <input asp-for="DateInTheaters" class="form-control" />
+                <span asp-validation-for="DateInTheaters" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

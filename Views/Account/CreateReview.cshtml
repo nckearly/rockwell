@@ -1,0 +1,43 @@
+﻿@model Rockwell.Models.FilmReview
+
+@{
+    ViewData["Title"] = "CreateReview";
+}
+
+
+<h4>Add a Review</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h5> Leave a reveiw of <strong>@ViewData["FilmTitle"]</strong></h5>
+
+        <form asp-action="CreateReview" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+           <input asp-for="FilmFk" type="hidden" value="@ViewData["FilmFk"]"/>
+
+            <div class="form-group">
+                <label asp-for="ReviewSummary" class="control-label">Summary</label>
+                <input asp-for="ReviewSummary" class="form-control" />
+                <span asp-validation-for="ReviewSummary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewRating" class="control-label">Rating</label>
+                <input asp-for="ReviewRating" class="form-control" />
+                <span asp-validation-for="ReviewRating" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

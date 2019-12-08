@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Rockwell.Models.FilmReview>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Hi @ViewData["namefirst"] </h1>
+
+@if (Model.Count() > 0)
+{
+    <p>Here are your movie reviews</p>
+}
+else
+{
+    <p>You have no movie reviews</p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewSummary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactFkNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmFkNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewSummary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactFkNavigation.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmFkNavigation.MovieTitle)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.ReviewPk">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReviewPk">Details</a> |*@
+                <a asp-action="DeleteReview" asp-route-reviewpk="@item.ReviewPk">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
